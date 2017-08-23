@@ -1,31 +1,28 @@
 cmake_minimum_required(VERSION 3.0)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-set(PROJECTNAME "Game")
-
+set(PROJECTNAME "Random")
 
 project(${PROJECTNAME})
 
 file(GLOB_RECURSE
 source
-./src/main.cpp
+${CMAKE_SOURCE_DIR}/src/*
 )
 
 file(GLOB_RECURSE
 headers
-./src/headers/*
+${CMAKE_SOURCE_DIR}/headers/*
 )
 
 add_executable(${PROJECTNAME} ${source} ${headers})
 
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMake")
 
-
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "./CMake/")
-
-# compiling on windows using cygwin
-# set(SFML_ROOT "C:/SFML-2.4.2/lib")
-# set(SFML_INCLUDE_DIR "C:/SFML-2.4.2/include")
-# set(SFML_LIBRARY_DIR "C:/SFML-2.4.2/lib")
-# use absolute path on windows even in file() and add_executable()
+#<Windows>
+#set(SFML_ROOT "C:/SFML-2.4.2")
+#set(SFML_INCLUDE_DIR "C:/SFML-2.4.2/include")
+#set(SFML_LIBRARY_DIR "C:/SFML-2.4.2/lib")
+#</Windows>
 
 find_package(SFML REQUIRED graphics window system)
 if (SFML_FOUND)
